@@ -4,12 +4,12 @@ A simple implementation of the counterfactual integrated gradients class and ass
 This implementation provides a method to find the nearest counterfactual neighbour.
 Then generate explanations using Integrated Gradients [1] between an input reference and counterfactual reference. 
 
-![Example of Counterfactual-Integrated Gradients](https://github.com/jamie-duell/Counterfactual-Integrated_Gradients/edit/main/imgs/example_img.png?raw=true)
+![image](https://github.com/jamie-duell/Counterfactual-Integrated_Gradients/assets/22540396/0ba911db-c595-4a03-b8b0-6f9b566c0a33)
 
 This can be extrapolated upon by using other counterfactual generative methods e.g. DiCE [2] or Wachter et. al. [3]. 
 Once can then produce interactive visual explanations: 
 
-![Example of Counterfactual-Integrated Gradients](https://github.com/jamie-duell/Counterfactual-Integrated_Gradients/edit/main/imgs/example_exp.png?raw=true)
+![image](https://github.com/jamie-duell/Counterfactual-Integrated_Gradients/assets/22540396/23d0d0b5-4688-459c-976d-370cbc286690)
 
 REFERENCES: 
 
