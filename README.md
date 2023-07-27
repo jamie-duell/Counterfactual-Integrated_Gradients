@@ -29,15 +29,14 @@ If you do not have access to a counterfactual instance from a generative method 
 
 Currently the method can be executed with five parameters `CF_IG.generate_nearest_CF_neighbour(tensor_instance[input_index:input_index+1], input_index, df_columns_to_drop, categorical_features, ohe)`<br /><br />
 Here: 
-<br /><br />
-`tensor_instance` is the tensor instance that we wish to explain. <br /> `input_index` is the same as that used in the tensor_instance.<br /> `df_columns_to_drop` will drop any columns necessary (empty list otherwise).<br /> `categorical_features` for one hot encoding if `ohe=False` (aka. you have not yet done one hot encoding on your dataset, this will be carried out with a simple label encoder).
 <br />
+`tensor_instance` is the tensor instance that we wish to explain. <br /> `input_index` is the same as that used in the tensor_instance.<br /> `df_columns_to_drop` will drop any columns necessary (empty list otherwise).<br /> `categorical_features` for one hot encoding if `ohe=False` (aka. you have not yet done one hot encoding on your dataset, this will be carried out with a simple label encoder).
+<br /><br /><br />
 Using a conunterfactual reference point (possibly from the generate nearest CF neighbour method), one can obtain feature-attribution values using: `CF_IG.generate_counterfactuals`.
 <br />
 The method can be executed with 5 parameters: `CF_IG.generate_counterfactuals(tensor_instance[input_index:input_index+1], counterfactual_instance, _K, decision_boundary_proba)`,
 <br /><br />Here:
 <br />`_K = value` (`Default = 500`) is the number of steps in the Riemann approximation of the line integral. 
-
 <br />`decision_boundary_proba` (`Default = 0.5`) is the probability at which the Riemann integral will terminate on a desired probability towards a class.
 
 <br /><br />
