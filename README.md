@@ -1,5 +1,5 @@
 # Counterfactual-Integrated_Gradients
-## A simple implementation of the counterfactual integrated gradients class and associated methods: Work In Progress (WIP)
+## A simple implementation of the counterfactual integrated gradients method: Work In Progress (WIP)
 
 This implementation provides a method to find the nearest counterfactual neighbour.
 Then generate explanations using Integrated Gradients [1] between an input reference and counterfactual reference. 
