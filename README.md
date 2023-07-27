@@ -29,7 +29,8 @@ following this, one can currently utilise the following functions: <br />
 <br />
 `CF_IG.plot_explanation`. 
 <br /><br />
-If you do not have access to a counterfactual instance from a generative method (e.g. DiCE), we recommend simply using the nearest counterfactual neighbour using `CF_IG.generate_nearest_CF_neighbour`. 
+If you do not have access to a counterfactual instance from a generative method (e.g. DiCE), we recommend simply using the nearest counterfactual neighbour using `CF_IG.generate_nearest_CF_neighbour`. <br /> <br /> 
+**note: we believe DiCE (from our knowledge) produces best results when counterfactual instances are used in concatenation with our `CF_IG.generate_counterfactuals` method.**
 
 Currently the method can be executed with five parameters `CF_IG.generate_nearest_CF_neighbour(tensor_instance[input_index:input_index+1], input_index, df_columns_to_drop, categorical_features, ohe)`<br /><br />
 Here: 
