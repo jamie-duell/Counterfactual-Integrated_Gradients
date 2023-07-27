@@ -12,7 +12,11 @@ class ExplainerBase(object):
     def generate_nearest_CF_neighbour(self):
 
         raise NotImplementedError
-    
+
+    def find_indices(self):
+
+        raise NotImplementedError
+        
     def plot_explanation(self):
         
         raise NotImplementedError
