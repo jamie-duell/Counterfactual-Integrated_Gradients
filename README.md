@@ -9,7 +9,7 @@ Then generate explanations using Integrated Gradients [1] between an input refer
 This can be extrapolated upon by using other counterfactual generative methods e.g. DiCE [2] or Wachter et. al. [3]. 
 Once can then produce interactive visual explanations: 
 
-![Example of Counterfactual-Integrated Gradients](https://github.com/jamie-duell/Counterfactual-Integrated_Gradients/edit/main/imgs/example_exp.png?raw=true)
+![Example of Counterfactual-Integrated Gradients](https://github.com/jamie-duell/Counterfactual-Integrated_Gradients/edit/main/imgs/example_exp.png)
 
 REFERENCES: 
 [1] M. Sundararajan, A. Taly, and Q. Yan, “Axiomatic attribution for deep networks,” ICML’17, pp. 3319–3328, 2017.
