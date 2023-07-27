@@ -11,7 +11,11 @@ Once can then produce interactive visual explanations:
 
 ![image](https://github.com/jamie-duell/Counterfactual-Integrated_Gradients/assets/22540396/23d0d0b5-4688-459c-976d-370cbc286690)
 
-## Functionality (WIP) 
+## Installation
+
+### TO BE COMPLETED
+
+## Quick Guide (WIP) 
 
 Instantiate an instance of the CounterfactualIG class to access the required methods with: 
 
