@@ -15,21 +15,44 @@ class CounterfactualIG(ExplainerBase):
         super().__init__(model_interface, data_interface)
     
     
-    def generate_nearest_CF_neighbour(self, query_instance):
-        #cf_pred = self.model_interface(query_instance)
-        #target = np.argmin(cf_pred.detach().numpy())
-        #dist = distance.squareform(distance.pdist(self.data_interface)) #distance between each data points w.r.t all other data points
-        #nearest_neighbours = np.argsort(dist, axis=1)  #number of closest points
-        #nearest_neighbours_arr = nearest_neighbours[inp_idx]
-        #for i in range(len(nearest_neighbours_arr)-1):
-        #    if np.round(self.model_interface(self.data_interface[nearest_neighbours_arr[i]])[target].detach().numpy()) != np.round(self.model_interface(self.data_interface[inp_idx])[target].detach().numpy()): #convert to numpy from tensor
-        #        closest_instance = data[nearest_neighbours_arr[i]]  
+    def generate_nearest_CF_neighbour(self, query_instance, input_index, df_columns_to_drop, categorical_features, ohe=False):
         
+        data_interface = self.data_interface
+        data_interface = data_interface.drop(labels=df_columns_to_drop, axis=1)
+        data_interface = data_interface.values
+        data_interface = data_interface.astype(str)
+        categorical_names = {}
+        
+        if ohe==False:
+            for feature in categorical_features:
+                le = LabelEncoder()
+                le.fit(data_interface[:, feature])
+                data_interface[:, feature] = le.transform(data_interface[:, feature])
+                categorical_names[feature] = le.classes_
+            encoder = OneHotEncoder().fit(data_interface) 
+        else:
+            pass
+        
+        data_interface = np.double(data_interface)
+        cf_pred = self.model_interface(query_instance)
+        target = np.argmin(cf_pred.detach().numpy())
+        dist = distance.squareform(distance.pdist(data_interface))
+        nearest_neighbours = np.argsort(dist, axis=1)
+        nearest_neighbours_arr = nearest_neighbours[input_index]
+
+        for i in range(len(nearest_neighbours_arr) - 1):
+            model_out_query = self.model_interface(query_instance)
+            
+            model_out_interface = self.model_interface(torch.from_numpy(data_interface[nearest_neighbours_arr[i]]).type(torch.FloatTensor))
+            
+            if np.round(model_out_interface.detach().numpy())[target] != np.round(model_out_query.detach().numpy())[target]:
+                closest_point = data_interface[nearest_neighbours_arr[i]]
+        return torch.from_numpy(closest_point).type(torch.FloatTensor)
         
         return print("This function is not yet implemented in the non-client side version of this method used in the paper \n simple adaptation of the code in the source file are necessary to make this work in the general case.")
         
     
-    def generate_counterfactuals(self, query_instance, counterfactual, target = 0.5, _K=500, decision_boundary_proba=0.5):
+    def generate_counterfactuals(self, query_instance, counterfactual, _K=500, decision_boundary_proba=0.5):
        
         """ 
         
@@ -60,7 +83,7 @@ class CounterfactualIG(ExplainerBase):
     
         cf_exp = scaled_features
     
-        index = min(find_indices(self.model_interface(cf_exp[0])[:,target], lambda e: e >= decision_boundary_proba))
+        index = min(self.find_indices(self.model_interface(cf_exp[0])[:,target], lambda e: e >= decision_boundary_proba))
     
         new_feature = scaled_features[0][index]
     
@@ -80,11 +103,11 @@ class CounterfactualIG(ExplainerBase):
     
         explanation_a = grads[0].mean(0) #get the mean gradient between both points
         
-        explanation = explanation_a*(new_feature[0].detach().numpy() - query_instance[0].detach().numpy())
+        explanation = explanation_a*(counterfactual[0].detach().numpy() - query_instance[0].detach().numpy())
             
         return explanation
     
-    def find_indices(lst, condition):  #used to find the index of the minimum value over decision bounds for target
+    def find_indices(self, lst, condition):  #used to find the index of the minimum value over decision bounds for target
         return [i for i, elem in enumerate(lst) if condition(elem)] 
 
     
