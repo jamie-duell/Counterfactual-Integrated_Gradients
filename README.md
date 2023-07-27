@@ -15,6 +15,10 @@ Once can then produce interactive visual explanations:
 
 ### TO BE COMPLETED
 
+## Dependencies
+
+### TO BE COMPLETED
+
 ## Quick Guide (WIP) 
 
 Instantiate an instance of the CounterfactualIG class to access the required methods with: 
