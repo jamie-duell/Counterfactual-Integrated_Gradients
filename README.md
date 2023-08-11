@@ -4,12 +4,12 @@
 This implementation provides a method to find the nearest counterfactual neighbour.
 Then generate explanations using Integrated Gradients [1] between an input reference and counterfactual reference. 
 
-![image](https://github.com/jamie-duell/Counterfactual-Integrated_Gradients/assets/22540396/0ba911db-c595-4a03-b8b0-6f9b566c0a33)
+![CF-IG_Example (1)](https://github.com/jamie-duell/Counterfactual-Integrated_Gradients/assets/22540396/ad2071ed-74d2-483b-9c3f-a553ffc23c6a)
 
 This can be extrapolated upon by using other counterfactual generative methods e.g. DiCE [2] or Wachter et. al. [3]. 
 Once can then produce interactive visual explanations: 
 
-![image](https://github.com/jamie-duell/Counterfactual-Integrated_Gradients/assets/22540396/23d0d0b5-4688-459c-976d-370cbc286690)
+![CF_Lymph](https://github.com/jamie-duell/Counterfactual-Integrated_Gradients/assets/22540396/84edc940-068e-434e-8400-d6285cac9b07)
 
 ## Installation
 
